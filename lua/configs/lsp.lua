@@ -17,11 +17,11 @@ vim.api.nvim_create_user_command("InstallAllLsp", function()
 		"lua-language-server",
 		"clangd",
 		"rust-analyzer",
-    "texlab",
+		"texlab",
 
 		"stylua",
 		"clang-format",
-    "tex-fmt",
+		"tex-fmt",
 	}
 
 	local mason_cmd = "MasonInstall " .. table.concat(tools, " ")
