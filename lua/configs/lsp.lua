@@ -1,6 +1,7 @@
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("clangd")
 vim.lsp.enable("rust-analyzer")
+vim.lsp.enable("texlab")
 
 local x = vim.diagnostic.severity
 vim.diagnostic.config({
@@ -16,9 +17,11 @@ vim.api.nvim_create_user_command("InstallAllLsp", function()
 		"lua-language-server",
 		"clangd",
 		"rust-analyzer",
+    "texlab",
 
 		"stylua",
 		"clang-format",
+    "tex-fmt",
 	}
 
 	local mason_cmd = "MasonInstall " .. table.concat(tools, " ")

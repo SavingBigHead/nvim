@@ -13,6 +13,7 @@ local M = {
 					lua = { "stylua" },
 					rust = { "rustfmt" },
 					cpp = { "clang-format" },
+          tex = { "tex-fmt" }
 				},
 				-- format_on_save = {
 				--   timeout_ms = 500,
