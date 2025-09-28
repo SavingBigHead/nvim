@@ -47,6 +47,10 @@ local M = {
 					},
 				},
 			},
+
+			sources = {
+				default = { "lsp", "path", "snippets", "buffer" },
+			},
 		},
 	},
 
