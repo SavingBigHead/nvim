@@ -4,7 +4,9 @@ local M = {
 		lazy = false,
 		init = function()
 			vim.g.vimtex_view_method = "sioyek"
-			vim.g.vimtex_view_sioyek_exe = "sioyek.exe"
+			if vim.fn.has("wsl") == 1 then
+				vim.g.vimtex_view_sioyek_exe = "sioyek.exe"
+			end
 
 			vim.g.vimtex_quickfix_ignore_filters = {
 				"Underfull",
