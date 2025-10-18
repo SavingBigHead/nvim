@@ -17,6 +17,7 @@ map("n", "<leader>e", ":Neotree toggle<CR>", { noremap = true, silent = true })
 
 -- telescope
 map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "telescope find file" })
+map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
 
 -- format
 map("n", "<leader>fm", function()
