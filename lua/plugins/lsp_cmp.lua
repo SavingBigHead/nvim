@@ -14,6 +14,7 @@ local M = {
 					rust = { "rustfmt" },
 					cpp = { "clang-format" },
 					tex = { "tex-fmt" },
+					python = { "ruff" },
 				},
 				-- format_on_save = {
 				--   timeout_ms = 500,

@@ -52,7 +52,7 @@ if vim.fn.has("wsl") == 1 then
 end
 
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "rust" },
+	pattern = { "rust", "python" },
 	callback = function()
 		vim.opt_local.shiftwidth = 4
 		vim.opt_local.tabstop = 4
