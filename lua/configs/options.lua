@@ -59,3 +59,8 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.softtabstop = 4
 	end,
 })
+
+if g.neovide then
+  opt.guifont = "JetBrainsMono Nerd Font:h12"
+  g.neovide_remember_window_size = true
+end
