@@ -25,6 +25,8 @@ local M = {
 						DiagnosticVirtualTextWarn = { bg = "NONE" },
 						DiagnosticVirtualTextInfo = { bg = "NONE" },
 						DiagnosticVirtualTextHint = { bg = "NONE" },
+
+            LspInlayHint = { bg = "NONE" },
 					}
 				end,
 			})
