@@ -1,30 +1,60 @@
 local M = {
+	-- {
+	-- 	"navarasu/onedark.nvim",
+	-- 	lazy = false,
+	-- 	config = function()
+	-- 		require("onedark").setup({
+	-- 			style = "dark",
+	-- 			diagnostics = {
+	-- 				-- background = false,
+	-- 			},
+	-- 		})
+	-- 		require("onedark").load()
+	-- 	end,
+	-- },
 	{
-		"navarasu/onedark.nvim",
+		"catppuccin/nvim",
 		lazy = false,
+		name = "catppuccin",
 		config = function()
-			require("onedark").setup({
-				-- transparent = true,
-				style = "dark",
-				diagnostics = {
-					background = false,
-				},
+			require("catppuccin").setup({
+				auto_integrations = true,
+				custom_highlights = function()
+					return {
+						DiagnosticVirtualTextError = { bg = "NONE" },
+						DiagnosticVirtualTextWarn = { bg = "NONE" },
+						DiagnosticVirtualTextInfo = { bg = "NONE" },
+						DiagnosticVirtualTextHint = { bg = "NONE" },
+					}
+				end,
 			})
-			require("onedark").load()
+			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
+
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		event = "VeryLazy",
 		config = function()
 			require("lualine").setup({
-				options = { theme = "onedark" },
+				options = {
+					theme = "catppuccin",
+					component_separators = "",
+					section_separators = { left = "", right = "" },
+					globalstatus = true,
+				},
 				sections = {
-					lualine_a = { "mode" },
-					lualine_b = { "branch", "diff", "diagnostics" },
-					lualine_c = { "filename" },
-					lualine_x = { "encoding", "fileformat", "filetype" },
+					lualine_a = { { "mode", right_padding = 2 } },
+					lualine_b = { "filename", "branch" },
+					lualine_c = {
+						"%=", -- 将后续内容居中或推到右侧
+					},
+					lualine_x = {},
+					lualine_y = { "filetype", "progress" },
+					lualine_z = {
+						{ "location", left_padding = 2 },
+					},
 				},
 			})
 		end,
@@ -55,7 +85,9 @@ local M = {
 		dependencies = "nvim-tree/nvim-web-devicons",
 		opts = {
 			options = {
+				separator_style = "slant",
 				diagnostics = "nvim_lsp",
+				show_buffer_close_icons = false,
 				always_show_bufferline = false,
 				offsets = {
 					{
