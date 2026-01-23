@@ -5,8 +5,13 @@ local M = {
 	-- 	config = function()
 	-- 		require("onedark").setup({
 	-- 			style = "dark",
-	-- 			diagnostics = {
-	-- 				-- background = false,
+	-- 			highlights = {
+	-- 				DiagnosticVirtualTextError = { bg = "NONE" },
+	-- 				DiagnosticVirtualTextWarn = { bg = "NONE" },
+	-- 				DiagnosticVirtualTextInfo = { bg = "NONE" },
+	-- 				DiagnosticVirtualTextHint = { bg = "NONE" },
+
+	-- 				LspInlayHint = { bg = "NONE" },
 	-- 			},
 	-- 		})
 	-- 		require("onedark").load()
@@ -15,6 +20,7 @@ local M = {
 	{
 		"catppuccin/nvim",
 		lazy = false,
+		priority = 1000,
 		name = "catppuccin",
 		config = function()
 			require("catppuccin").setup({
@@ -26,7 +32,7 @@ local M = {
 						DiagnosticVirtualTextInfo = { bg = "NONE" },
 						DiagnosticVirtualTextHint = { bg = "NONE" },
 
-            LspInlayHint = { bg = "NONE" },
+						LspInlayHint = { bg = "NONE" },
 					}
 				end,
 			})
@@ -35,32 +41,85 @@ local M = {
 	},
 
 	{
-		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		"rebelot/heirline.nvim",
 		event = "VeryLazy",
 		config = function()
-			require("lualine").setup({
-				options = {
-					theme = "catppuccin",
-					component_separators = "",
-					section_separators = { left = "", right = "" },
-					globalstatus = true,
-				},
-				sections = {
-					lualine_a = { { "mode", right_padding = 2 } },
-					lualine_b = { "filename", "branch" },
-					lualine_c = {
-						"%=", -- 将后续内容居中或推到右侧
-					},
-					lualine_x = {},
-					lualine_y = { "filetype", "progress" },
-					lualine_z = {
-						{ "location", left_padding = 2 },
-					},
-				},
-			})
+			vim.opt.laststatus = 3
+			require("heirline").setup(require("configs.heirline"))
 		end,
 	},
+
+	-- {
+	-- 	"nvim-lualine/lualine.nvim",
+	-- 	dependencies = { "nvim-tree/nvim-web-devicons" },
+	-- 	event = "VeryLazy",
+	-- 	config = function()
+	-- 		local auto_theme_custom = require("lualine.themes.catppuccin")
+
+	-- 		for _, mode in pairs(auto_theme_custom) do
+	-- 			for section_name, section_config in pairs(mode) do
+	-- 				if section_name ~= "a" then
+	-- 					section_config.bg = "NONE"
+	-- 				end
+	-- 			end
+	-- 		end
+
+	-- 		local function get_lsp()
+	-- 			local msg = "No Active LSP"
+	-- 			local clients = vim.lsp.get_clients({ bufnr = 0 })
+	-- 			if next(clients) == nil then
+	-- 				return msg
+	-- 			end
+	-- 			local client_names = {}
+	-- 			for _, client in ipairs(clients) do
+	-- 				if client.name ~= "null-ls" and client.name ~= "copilot" then
+	-- 					table.insert(client_names, client.name)
+	-- 				end
+	-- 			end
+	-- 			if #client_names == 0 then
+	-- 				return msg
+	-- 			else
+	-- 				return " " .. table.concat(client_names, ", ")
+	-- 			end
+	-- 		end
+
+	-- 		local function get_cwd()
+	-- 			local name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+	-- 			return " " .. name
+	-- 		end
+
+	-- 		require("lualine").setup({
+	-- 			options = {
+	-- 				theme = auto_theme_custom,
+	-- 				component_separators = "",
+	-- 				section_separators = "",
+	-- 				globalstatus = true,
+	-- 			},
+	-- 			sections = {
+	-- 				lualine_a = {
+	-- 					{ "mode", icon = "" },
+	-- 				},
+	-- 				lualine_b = {
+	-- 					{ "filename", file_status = true, path = 0 },
+	-- 					{ "branch", icon = "" },
+	-- 					{ "diagnostics", symbols = { error = " ", warn = " ", info = " " } },
+	-- 				},
+	-- 				lualine_c = { "=" },
+	-- 				lualine_x = {
+	-- 					{ "diff", symbols = { added = " ", modified = " ", removed = " " } },
+	-- 					{ "location" },
+	-- 					{ "encoding" },
+	-- 					{ "filetype", icon_only = false },
+	-- 					{ get_lsp },
+	-- 					{ get_cwd },
+	-- 				},
+	-- 				lualine_y = {},
+	-- 				lualine_z = {},
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
+
 	{
 		-- noice通知和悬浮命令行
 		"folke/noice.nvim",
