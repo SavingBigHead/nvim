@@ -57,8 +57,23 @@ local Mode = {
 		provider = function(self)
 			return "  " .. (self.mode_map[self.mode] or self.mode) .. " "
 		end,
-		hl = function()
-			return { fg = cp.base, bg = cp.mauve, bold = true }
+		hl = function(self)
+			local mode_color = {
+				n = cp.blue, -- normal
+				i = cp.green, -- insert
+				t = cp.green, -- terminal
+				c = cp.peach, -- command
+				v = cp.mauve, -- visual
+				V = cp.mauve,
+				["\22"] = cp.mauve, -- visual block
+				R = cp.red, -- replace
+			}
+
+			return {
+				fg = cp.base,
+				bg = mode_color[self.mode:sub(1, 1)] or cp.blue,
+				bold = true,
+			}
 		end,
 	},
 }
