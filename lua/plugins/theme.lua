@@ -2,6 +2,7 @@ local M = {
 	-- {
 	-- 	"navarasu/onedark.nvim",
 	-- 	lazy = false,
+	--   priority = 1000,
 	-- 	config = function()
 	-- 		require("onedark").setup({
 	-- 			style = "dark",
@@ -17,28 +18,53 @@ local M = {
 	-- 		require("onedark").load()
 	-- 	end,
 	-- },
+
 	{
-		"catppuccin/nvim",
+		"olimorris/onedarkpro.nvim",
 		lazy = false,
 		priority = 1000,
-		name = "catppuccin",
 		config = function()
-			require("catppuccin").setup({
-				auto_integrations = true,
-				custom_highlights = function()
-					return {
-						DiagnosticVirtualTextError = { bg = "NONE" },
-						DiagnosticVirtualTextWarn = { bg = "NONE" },
-						DiagnosticVirtualTextInfo = { bg = "NONE" },
-						DiagnosticVirtualTextHint = { bg = "NONE" },
+			cp = require("onedarkpro.helpers").get_colors()
+			require("onedarkpro").setup({
+				highlights = {
+					DiagnosticVirtualTextError = { bg = "NONE" },
+					DiagnosticVirtualTextWarn = { bg = "NONE" },
+					DiagnosticVirtualTextInfo = { bg = "NONE" },
+					DiagnosticVirtualTextHint = { bg = "NONE" },
 
-						LspInlayHint = { bg = "NONE" },
-					}
-				end,
+					LspInlayHint = { bg = "NONE" },
+
+					NeoTreeDirectoryIcon = { fg = cp.bule },
+					NeoTreeRootName = { fg = cp.yellow },
+					dashboardHeader = { fg = cp.yellow },
+				}
 			})
-			vim.cmd.colorscheme("catppuccin")
-		end,
+			vim.cmd("colorscheme onedark")
+		end
 	},
+
+	-- {
+	-- 	"catppuccin/nvim",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	name = "catppuccin",
+	-- 	config = function()
+	-- 		require("catppuccin").setup({
+	-- 			auto_integrations = true,
+	-- 			custom_highlights = function()
+	-- 				return {
+	-- 					DiagnosticVirtualTextError = { bg = "NONE" },
+	-- 					DiagnosticVirtualTextWarn = { bg = "NONE" },
+	-- 					DiagnosticVirtualTextInfo = { bg = "NONE" },
+	-- 					DiagnosticVirtualTextHint = { bg = "NONE" },
+
+	-- 					LspInlayHint = { bg = "NONE" },
+	-- 				}
+	-- 			end,
+	-- 		})
+	-- 		vim.cmd.colorscheme("catppuccin")
+	-- 	end,
+	-- },
 
 	{
 		"rebelot/heirline.nvim",
