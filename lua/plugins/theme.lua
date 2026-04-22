@@ -24,7 +24,7 @@ local M = {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			cp = require("onedarkpro.helpers").get_colors()
+			local cp = require("onedarkpro.helpers").get_colors()
 			require("onedarkpro").setup({
 				highlights = {
 					DiagnosticVirtualTextError = { bg = "NONE" },
@@ -37,10 +37,10 @@ local M = {
 					NeoTreeDirectoryIcon = { fg = cp.bule },
 					NeoTreeRootName = { fg = cp.yellow },
 					dashboardHeader = { fg = cp.yellow },
-				}
+				},
 			})
 			vim.cmd("colorscheme onedark")
-		end
+		end,
 	},
 
 	-- {
