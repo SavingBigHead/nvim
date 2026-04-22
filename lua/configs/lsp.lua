@@ -2,6 +2,7 @@ vim.lsp.enable("lua_ls")
 vim.lsp.enable("clangd")
 vim.lsp.enable("rust-analyzer")
 vim.lsp.enable("texlab")
+vim.lsp.enable("pyright")
 
 local x = vim.diagnostic.severity
 vim.diagnostic.config({
@@ -27,4 +28,21 @@ vim.api.nvim_create_user_command("InstallAllLsp", function()
 	local mason_cmd = "MasonInstall " .. table.concat(tools, " ")
 
 	vim.cmd(mason_cmd)
+end, {})
+
+vim.api.nvim_create_user_command("InstallAllTS", function()
+  local languages = {
+    "html",
+    "lua",
+    "luadoc",
+    "printf",
+    "vim",
+    "vimdoc",
+    "rust",
+    "cpp",
+    "python",
+  }
+
+  local ts_cmd = "TSInstall " .. table.concat(languages, " ")
+  vim.cmd(ts_cmd)
 end, {})

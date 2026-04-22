@@ -5,6 +5,7 @@ local M = {
 		build = ":TSUpdate",
 		opts = {
 			ensure_installed = {
+				"html",
 				"lua",
 				"luadoc",
 				"printf",
@@ -12,6 +13,7 @@ local M = {
 				"vimdoc",
 				"rust",
 				"cpp",
+				"python",
 			},
 			highlight = {
 				enable = true,

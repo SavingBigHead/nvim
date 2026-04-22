@@ -2,7 +2,6 @@ local leet_arg = "leetcode.nvim"
 local M = {
 	{
 		"kawre/leetcode.nvim",
-		build = ":TSUpdate html",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
