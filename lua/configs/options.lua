@@ -52,6 +52,7 @@ if vim.fn.has("wsl") == 1 then
 end
 
 vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("indentation", { clear = true }),
 	pattern = { "rust", "python" },
 	callback = function()
 		vim.opt_local.shiftwidth = 4
@@ -61,6 +62,6 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 if g.neovide then
-  opt.guifont = "JetBrainsMono Nerd Font:h12"
-  g.neovide_remember_window_size = true
+	opt.guifont = "JetBrainsMono Nerd Font:h12"
+	g.neovide_remember_window_size = true
 end

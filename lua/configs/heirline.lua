@@ -96,7 +96,7 @@ local Mode = {
 -- =====================
 
 local FileName = {
-	hl = { fg = cp.fg},
+	hl = { fg = cp.fg },
 	condition = conditions.buffer_not_empty,
 	provider = function()
 		return vim.fn.expand("%:t") .. " "
@@ -104,7 +104,7 @@ local FileName = {
 }
 
 local Git = {
-	hl = { fg = cp.fg},
+	hl = { fg = cp.fg },
 	condition = conditions.is_git_repo,
 	init = function(self)
 		self.status = vim.b.gitsigns_status_dict
@@ -144,7 +144,7 @@ local Diagnostics = {
 		provider = function(self)
 			return self.info > 0 and (self.info_icon .. self.info .. " ") or ""
 		end,
-		hl = { fg = cp.cyan},
+		hl = { fg = cp.cyan },
 	},
 }
 
@@ -187,7 +187,7 @@ local GitDiff = {
 }
 
 local Location = {
-	hl = { fg = cp.fg},
+	hl = { fg = cp.fg },
 	provider = function()
 		local line = vim.fn.line(".")
 		local col = vim.fn.col(".")
@@ -196,14 +196,14 @@ local Location = {
 }
 
 local Encoding = {
-	hl = { fg = cp.fg},
+	hl = { fg = cp.fg },
 	provider = function()
 		return (vim.bo.fenc ~= "" and vim.bo.fenc or vim.o.enc) .. " "
 	end,
 }
 
 local FileType = {
-	hl = { fg = cp.fg},
+	hl = { fg = cp.fg },
 	provider = function()
 		return vim.bo.filetype .. " "
 	end,
@@ -211,8 +211,8 @@ local FileType = {
 
 local LSP = {
 	provider = function()
-		local fg= get_lsp()
-		return fg.. " "
+		local fg = get_lsp()
+		return fg .. " "
 	end,
 	hl = function()
 		if get_lsp() == "No Active LSP" then
@@ -224,7 +224,7 @@ local LSP = {
 }
 
 local CWD = {
-	hl = { fg = cp.fg},
+	hl = { fg = cp.fg },
 	provider = function()
 		return get_cwd() .. " "
 	end,

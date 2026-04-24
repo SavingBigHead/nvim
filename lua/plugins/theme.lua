@@ -1,153 +1,69 @@
-local M = {
-	-- {
-	-- 	"navarasu/onedark.nvim",
-	-- 	lazy = false,
-	--   priority = 1000,
-	-- 	config = function()
-	-- 		require("onedark").setup({
-	-- 			style = "dark",
-	-- 			highlights = {
-	-- 				DiagnosticVirtualTextError = { bg = "NONE" },
-	-- 				DiagnosticVirtualTextWarn = { bg = "NONE" },
-	-- 				DiagnosticVirtualTextInfo = { bg = "NONE" },
-	-- 				DiagnosticVirtualTextHint = { bg = "NONE" },
+vim.pack.add({
+	{ src = "https://github.com/olimorris/onedarkpro.nvim" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
+})
 
-	-- 				LspInlayHint = { bg = "NONE" },
-	-- 			},
-	-- 		})
-	-- 		require("onedark").load()
-	-- 	end,
-	-- },
+local cp = require("onedarkpro.helpers").get_colors()
+require("onedarkpro").setup({
+	highlights = {
+		DiagnosticVirtualTextError = { bg = "NONE" },
+		DiagnosticVirtualTextWarn = { bg = "NONE" },
+		DiagnosticVirtualTextInfo = { bg = "NONE" },
+		DiagnosticVirtualTextHint = { bg = "NONE" },
 
-	{
-		"olimorris/onedarkpro.nvim",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			local cp = require("onedarkpro.helpers").get_colors()
-			require("onedarkpro").setup({
-				highlights = {
-					DiagnosticVirtualTextError = { bg = "NONE" },
-					DiagnosticVirtualTextWarn = { bg = "NONE" },
-					DiagnosticVirtualTextInfo = { bg = "NONE" },
-					DiagnosticVirtualTextHint = { bg = "NONE" },
+		LspInlayHint = { bg = "NONE" },
 
-					LspInlayHint = { bg = "NONE" },
-
-					NeoTreeDirectoryIcon = { fg = cp.bule },
-					NeoTreeRootName = { fg = cp.yellow },
-					dashboardHeader = { fg = cp.yellow },
-				},
-			})
-			vim.cmd("colorscheme onedark")
-		end,
+		NeoTreeDirectoryIcon = { fg = cp.blue },
+		NeoTreeRootName = { fg = cp.yellow },
+		dashboardHeader = { fg = cp.yellow },
 	},
+})
 
-	-- {
-	-- 	"catppuccin/nvim",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- 	name = "catppuccin",
-	-- 	config = function()
-	-- 		require("catppuccin").setup({
-	-- 			auto_integrations = true,
-	-- 			custom_highlights = function()
-	-- 				return {
-	-- 					DiagnosticVirtualTextError = { bg = "NONE" },
-	-- 					DiagnosticVirtualTextWarn = { bg = "NONE" },
-	-- 					DiagnosticVirtualTextInfo = { bg = "NONE" },
-	-- 					DiagnosticVirtualTextHint = { bg = "NONE" },
+vim.cmd("colorscheme onedark")
 
-	-- 					LspInlayHint = { bg = "NONE" },
-	-- 				}
-	-- 			end,
-	-- 		})
-	-- 		vim.cmd.colorscheme("catppuccin")
-	-- 	end,
-	-- },
-
-	{
-		"rebelot/heirline.nvim",
-		event = "VeryLazy",
-		config = function()
-			vim.opt.laststatus = 3
-			require("heirline").setup(require("configs.heirline"))
-		end,
-	},
-
-	{
-		-- noice通知和悬浮命令行
-		"folke/noice.nvim",
-		event = "VeryLazy",
-		opts = {
-			lsp = {
-				hover = {
-					enabled = false,
-				},
-				signature = {
-					enabled = false,
-				},
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost", "BufNewFile" }, {
+	group = vim.api.nvim_create_augroup("highlights", { clear = true }),
+	once = true,
+	callback = function()
+		require("nvim-treesitter").setup({
+			ensure_installed = {
+				"html",
+				"lua",
+				"luadoc",
+				"printf",
+				"vim",
+				"vimdoc",
+				"rust",
+				"cpp",
+				"python",
 			},
-		},
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify",
-		},
-	},
-
-	{
-		"akinsho/bufferline.nvim",
-		event = "VeryLazy",
-		dependencies = "nvim-tree/nvim-web-devicons",
-		opts = {
-			options = {
-				separator_style = "slant",
-				diagnostics = "nvim_lsp",
-				show_buffer_close_icons = false,
-				always_show_bufferline = false,
-				offsets = {
-					{
-						filetype = "neo-tree",
-						text = "Neo-tree",
-					},
-				},
+			auto_install = true,
+			highlight = {
+				enable = true,
+				use_languagetree = true,
 			},
-		},
-	},
+			indent = { enable = true },
+		})
 
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-		main = "ibl",
-		opts = {
-			indent = { char = "│" },
-			scope = { char = "│" },
-		},
-	},
-	{
-		"nvimdev/dashboard-nvim",
-		event = "VimEnter",
-		config = function()
-			require("dashboard").setup({
-				config = {
-					header = {
-						"                                                                     ",
-						"       ████ ██████           █████      ██                     ",
-						"      ███████████             █████                             ",
-						"      █████████ ███████████████████ ███   ███████████   ",
-						"     █████████  ███    █████████████ █████ ██████████████   ",
-						"    █████████ ██████████ █████████ █████ █████ ████ █████   ",
-						"  ███████████ ███    ███ █████████ █████ █████ ████ █████  ",
-						" ██████  █████████████████████ ████ █████ █████ ████ ██████ ",
-						"                                                                       ",
-					},
-					shortcut = {},
-					footer = {},
-				},
-			})
-		end,
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-	},
-}
+		require("gitsigns").setup()
+	end,
+})
 
-return M
+vim.api.nvim_create_user_command("InstallAllTS", function()
+	local languages = {
+		"html",
+		"lua",
+		"luadoc",
+		"printf",
+		"vim",
+		"vimdoc",
+		"rust",
+		"cpp",
+		"python",
+	}
+
+	local ts_cmd = "TSInstall " .. table.concat(languages, " ")
+	vim.cmd(ts_cmd)
+end, {})
+

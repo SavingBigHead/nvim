@@ -1,5 +1,7 @@
 local map = vim.keymap.set
 
+vim.g.mapleader = " "
+
 map("i", "<C-h>", "<Left>", { desc = "move left" })
 map("i", "<C-l>", "<Right>", { desc = "move right" })
 map("i", "<C-j>", "<Down>", { desc = "move down" })
@@ -45,3 +47,9 @@ map({ "n" }, "<S-h>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Prev Buffer" })
 map({ "n" }, "<S-l>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next Buffer" })
 map({ "n" }, "<leader>bc", ":bdelete %<cr>", { desc = "close current buffer" })
 map({ "n" }, "<leader>bp", "<cmd>BufferLinePickClose<cr>", { desc = "pick close" })
+
+--which-key
+map({ "n" }, "<leader>?", function()
+	require("which-key").show({ global = false })
+end, { desc = "Buffer Local Keymaps (which-key)" })
+

@@ -1,11 +1,11 @@
-local M = {
-	{
-		-- auto-save自动保存
-		"okuuva/auto-save.nvim",
-		cmd = "ASToggle",
-		event = { "InsertLeave", "TextChanged" },
-		opts = {},
-	},
-}
+vim.pack.add({
+	{ src = "https://github.com/okuuva/auto-save.nvim" },
+})
 
-return M
+vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
+	group = vim.api.nvim_create_augroup("auto_save", { clear = true }),
+	once = true,
+	callback = function()
+		require("auto-save").setup()
+	end,
+})
