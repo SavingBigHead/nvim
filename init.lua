@@ -5,6 +5,7 @@ require("plugins.theme")
 require("plugins.ui")
 
 require("plugins.mason")
+require("plugins.treesitter")
 require("plugins.blink")
 require("plugins.format")
 require("plugins.telescope")
