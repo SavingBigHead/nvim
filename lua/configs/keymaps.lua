@@ -15,7 +15,7 @@ map("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
 map("i", "jk", "<Esc>", { desc = "return to normal" })
 
 -- neotree
-map("n", "<leader>e", ":Neotree toggle<CR>", { noremap = true, silent = true })
+map("n", "<leader>e", "<Cmd>Neotree toggle reveal<CR>", { desc = "toggle neo-tree" })
 
 -- telescope
 map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "telescope find file" })
@@ -52,4 +52,3 @@ map({ "n" }, "<leader>bp", "<cmd>BufferLinePickClose<cr>", { desc = "pick close"
 map({ "n" }, "<leader>?", function()
 	require("which-key").show({ global = false })
 end, { desc = "Buffer Local Keymaps (which-key)" })
-
