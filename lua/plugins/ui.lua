@@ -59,6 +59,9 @@ require("dashboard").setup({
 		shortcut = {},
 		footer = {},
 	},
+  hide = {
+    statusline = false,
+  }
 })
 
 require("neo-tree").setup({
