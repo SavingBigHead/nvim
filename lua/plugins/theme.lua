@@ -1,23 +1,45 @@
 vim.pack.add({
-	{ src = "https://github.com/olimorris/onedarkpro.nvim" },
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
+	-- { src = "https://github.com/olimorris/onedarkpro.nvim" },
+	{ src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
 })
 
-local cp = require("onedarkpro.helpers").get_colors()
-require("onedarkpro").setup({
-	highlights = {
-		DiagnosticVirtualTextError = { bg = "NONE" },
-		DiagnosticVirtualTextWarn = { bg = "NONE" },
-		DiagnosticVirtualTextInfo = { bg = "NONE" },
-		DiagnosticVirtualTextHint = { bg = "NONE" },
+-- local cp = require("onedarkpro.helpers").get_colors()
+-- require("onedarkpro").setup({
+-- 	highlights = {
+-- 		DiagnosticVirtualTextError = { bg = "NONE" },
+-- 		DiagnosticVirtualTextWarn = { bg = "NONE" },
+-- 		DiagnosticVirtualTextInfo = { bg = "NONE" },
+-- 		DiagnosticVirtualTextHint = { bg = "NONE" },
+--
+-- 		LspInlayHint = { bg = "NONE" },
+--
+-- 		NeoTreeDirectoryIcon = { fg = cp.blue },
+-- 		NeoTreeRootName = { fg = cp.yellow },
+-- 		dashboardHeader = { fg = cp.yellow },
+-- 	},
+-- })
+-- vim.cmd("colorscheme onedark")
 
-		LspInlayHint = { bg = "NONE" },
+require("catppuccin").setup({
+	flavour = "mocha",
 
-		NeoTreeDirectoryIcon = { fg = cp.blue },
-		NeoTreeRootName = { fg = cp.yellow },
-		dashboardHeader = { fg = cp.yellow },
+	integrations = {
+		gitsigns = true,
+		mason = true,
+		notify = true,
+		lsp_trouble = true,
+		which_key = true,
 	},
-})
 
-vim.cmd("colorscheme onedark")
+	custom_highlights = function()
+		return {
+			DiagnosticVirtualTextError = { bg = "NONE" },
+			DiagnosticVirtualTextWarn = { bg = "NONE" },
+			DiagnosticVirtualTextInfo = { bg = "NONE" },
+			DiagnosticVirtualTextHint = { bg = "NONE" },
+
+			LspInlayHint = { bg = "NONE" },
+		}
+	end,
+})
+vim.cmd.colorscheme("catppuccin-nvim")

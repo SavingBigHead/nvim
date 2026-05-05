@@ -1,7 +1,7 @@
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
--- local cp = require("catppuccin.palettes").get_palette()
-local cp = require("onedarkpro.helpers").get_colors()
+local cp = require("catppuccin.palettes").get_palette()
+-- local cp = require("onedarkpro.helpers").get_colors()
 -- local cp = require("onedark.colors")
 
 -- Catppuccin	OneDarkPro onedark.nvim	说明
@@ -75,15 +75,15 @@ local Mode = {
 				n = cp.blue, -- normal
 				i = cp.green, -- insert
 				t = cp.green, -- terminal
-				c = cp.orange, -- command
-				v = cp.purple, -- visual
-				V = cp.purple,
-				["\22"] = cp.purple, -- visual block
+				c = cp.peach, -- command
+				v = cp.mauve, -- visual
+				V = cp.mauve,
+				["\22"] = cp.mauve, -- visual block
 				R = cp.red, -- replace
 			}
 
 			return {
-				fg = cp.bg,
+				fg = cp.base,
 				bg = mode_color[self.mode:sub(1, 1)] or cp.blue,
 				bold = true,
 			}
@@ -96,7 +96,7 @@ local Mode = {
 -- =====================
 
 local FileName = {
-	hl = { fg = cp.fg },
+	hl = { fg = cp.text },
 	condition = conditions.buffer_not_empty,
 	provider = function()
 		return vim.fn.expand("%:t") .. " "
@@ -104,7 +104,7 @@ local FileName = {
 }
 
 local Git = {
-	hl = { fg = cp.fg },
+	hl = { fg = cp.text },
 	condition = conditions.is_git_repo,
 	init = function(self)
 		self.status = vim.b.gitsigns_status_dict
@@ -144,7 +144,7 @@ local Diagnostics = {
 		provider = function(self)
 			return self.info > 0 and (self.info_icon .. self.info .. " ") or ""
 		end,
-		hl = { fg = cp.cyan },
+		hl = { fg = cp.sky },
 	},
 }
 
@@ -187,7 +187,7 @@ local GitDiff = {
 }
 
 local Location = {
-	hl = { fg = cp.fg },
+	hl = { fg = cp.text },
 	provider = function()
 		local line = vim.fn.line(".")
 		local col = vim.fn.col(".")
@@ -196,14 +196,14 @@ local Location = {
 }
 
 local Encoding = {
-	hl = { fg = cp.fg },
+	hl = { fg = cp.text },
 	provider = function()
 		return (vim.bo.fenc ~= "" and vim.bo.fenc or vim.o.enc) .. " "
 	end,
 }
 
 local FileType = {
-	hl = { fg = cp.fg },
+	hl = { fg = cp.text },
 	provider = function()
 		return vim.bo.filetype .. " "
 	end,
@@ -224,7 +224,7 @@ local LSP = {
 }
 
 local CWD = {
-	hl = { fg = cp.fg },
+	hl = { fg = cp.text },
 	provider = function()
 		return get_cwd() .. " "
 	end,
