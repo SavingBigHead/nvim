@@ -14,6 +14,8 @@ map("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
 
 map("i", "jk", "<Esc>", { desc = "return to normal" })
 
+map("n", "<leader>ln", "<cmd>set rnu!<CR>", { desc = "toggle line number" })
+
 -- neotree
 map("n", "<leader>e", "<Cmd>Neotree toggle reveal<CR>", { desc = "toggle neo-tree" })
 
