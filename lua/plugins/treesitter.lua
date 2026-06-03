@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost", "BufNewFile" }, {
 		require("gitsigns").setup()
 
 		require("treesitter-context").setup({
-			separator = ".",
+			-- separator = ".",
 		})
 	end,
 })
