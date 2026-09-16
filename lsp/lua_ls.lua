@@ -15,6 +15,8 @@ return {
 					"set_kind",
 					"add_files",
 					"add_deps",
+					"add_requires",
+					"add_packages",
 				},
 			},
 		},
