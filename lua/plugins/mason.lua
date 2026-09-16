@@ -16,6 +16,7 @@ vim.api.nvim_create_user_command("InstallAllLsp", function()
 		"clang-format",
 		"tex-fmt",
 		"ruff",
+		"yamlfmt",
 	}
 
 	local mason_cmd = "MasonInstall " .. table.concat(tools, " ")

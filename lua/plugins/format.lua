@@ -14,6 +14,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost", "BufNewFile" }, {
 				cpp = { "clang-format" },
 				tex = { "tex-fmt" },
 				python = { "ruff" },
+        yaml = { "yamlfmt" }
 			},
 			-- format_on_save = {
 			--   timeout_ms = 500,
